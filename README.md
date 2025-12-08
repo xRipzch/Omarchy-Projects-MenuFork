@@ -11,6 +11,14 @@ A lightweight launcher to quickly open recent IDE projects (Cursor, VS Code, VS 
 - Fuzzy search through project names
 - One-click launch into the appropriate editor
 
+## Screenshots
+
+### IDE Selection Menu
+![IDE Selection Menu](screenshots/ide-selection.png)
+
+### Project List (Cursor)
+![Zed Projects](screenshots/cursor-projects.png)
+
 ## Requirements
 
 - [Node.js](https://nodejs.org/)
