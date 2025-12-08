@@ -5,7 +5,7 @@ A lightweight launcher to quickly open recent IDE projects (Cursor, VS Code, VS 
 ## Features
 
 - Lists all your IDE workspaces sorted by **most recently used**
-- Supports multiple editors: **Cursor**, **VS Code**, **VS Code OSS**, **VSCodium**  and **Zed**
+- Supports multiple editors: **Cursor**, **VS Code**, **VSCodium**  and **Zed**
 - Tabbed interface to filter by IDE
 - Shows which editor each project belongs to when viewing all projects
 - Fuzzy search through project names
@@ -21,9 +21,11 @@ A lightweight launcher to quickly open recent IDE projects (Cursor, VS Code, VS 
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/)
+- Bash 4.0+ (for case conversion)
+- [jq](https://stedolan.github.io/jq/) (optional, for better JSON parsing - falls back to grep/sed if not available)
+- [sqlite3](https://www.sqlite.org/) (required for Zed support)
 - [Walker](https://github.com/abenz1267/walker) (or any dmenu-compatible launcher)
-- At least one of: [Cursor](https://cursor.sh/), [VS Code](https://code.visualstudio.com/), [VS Code OSS](https://github.com/microsoft/vscode), or [VSCodium](https://vscodium.com/)
+- At least one of: [Cursor](https://cursor.sh/), [VS Code](https://code.visualstudio.com/), [VSCodium](https://vscodium.com/), or [Zed](https://zed.dev/)
 
 ## Installation
 
@@ -60,10 +62,12 @@ bindd = SUPER SHIFT, V, VS Code Projects, exec, ~/.config/hypr/scripts/Omarchy-C
 
 ## How It Works
 
-1. `index.js` reads workspace storage from all supported editors
+1. `projects-menu.sh` reads workspace storage from all supported editors using pure bash
 2. Extracts project paths and sorts them by modification time (newest first)
-3. `projects-menu.sh` shows a tabbed interface to select IDE, then lists projects
+3. Shows a tabbed interface to select IDE, then lists projects
 4. Opens the selected project in the appropriate editor (automatically detected)
+
+**Note:** This project uses pure bash with standard Linux utilities. No Node.js required! JSON parsing uses `jq` if available, otherwise falls back to `grep`/`sed` for simple extraction.
 
 ## Contribution
 
